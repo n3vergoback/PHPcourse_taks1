@@ -1,6 +1,14 @@
 <?php
-class Pages{
+class Pages extends Controller {
     public function __construct(){
-        echo 'ok';
+
+    }
+
+    public function index(){
+
+    }
+
+    public function about(){
+
     }
 }
