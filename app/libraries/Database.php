@@ -5,8 +5,8 @@ class Database {
     private string $pass = DB_PASSWORD;
     private string $dbName = DB_NAME;
 
-    private $dbHandler;
-    private string $statement;
+    private PDO $dbHandler;
+    private PDOStatement $statement;
     private string $error;
 
     public function __construct(){
@@ -21,5 +21,40 @@ class Database {
             $this->error = $e->getMessage();
             echo $this->error;
         }
+    }
+
+    public function query(string $sql): void{
+        $this->statement = $this->dbHandler->prepare($sql);
+    }
+
+    public function bind(string $param, mixed $value, $type = null): void
+    {
+        if (is_null($type)) {
+            $type = match (true) {
+                is_int($value) => PDO::PARAM_INT,
+                is_bool($value) => PDO::PARAM_BOOL,
+                is_null($value) => PDO::PARAM_NULL,
+                default => PDO::PARAM_STR,
+            };
+        }
+
+        $this->statement->bindValue($param, $value, $type);
+    }
+    public function execute(): bool{
+        return $this->statement->execute();
+    }
+
+    public function resultSet(): array{
+        $this->execute();
+        return $this->statement->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    public function singleResultSet(): object{
+        $this->execute();
+        return $this->statement->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function rowsCount(): int{
+        return $this->statement->rowCount();
     }
 }

@@ -1,11 +1,11 @@
 <?php
 class Controller {
-    public function model($model): string{
+    public function model(string $model): object{
         require_once '../app/models/' . $model . '.php';
         return new $model();
     }
 
-    public function view($view, $data = []) {
+    public function view(string $view, $data = []): void{
         if(file_exists('../app/views/' . $view . '.php')){
             require_once '../app/views/' . $view . '.php';
         } else {
