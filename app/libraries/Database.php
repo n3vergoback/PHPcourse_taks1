@@ -27,7 +27,7 @@ class Database {
         $this->statement = $this->dbHandler->prepare($sql);
     }
 
-    public function bind(string $param, mixed $value, $type = null): void
+    public function bind(string $param, mixed $value, mixed $type = null): void
     {
         if (is_null($type)) {
             $type = match (true) {
