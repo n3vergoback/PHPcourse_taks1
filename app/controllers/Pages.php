@@ -11,11 +11,8 @@ class Pages extends Controller {
         $this->view('pages/index', $data);
     }
 
-    public function signUp(){
-
-    }
-
-    public function signIn(){
-
+    public function feedback(){
+        $data = [];
+        $this->view('pages/feedback', $data);
     }
 }

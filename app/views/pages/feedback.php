@@ -4,22 +4,22 @@
 </head>
 <body>
 <?php require_once APPROOT . '/views/inc/nav.php'; ?>
-<div class="row">
+<div class="container">
     <div class="col-md-5 mx-auto">
-        <div class="card mt-5 mb-5">
-            <form method="post" action="" class="forms" enctype="multipart/form-data">
+        <div class="card mt-5">
+            <form method="post" action="<?php echo URLROOT; ?>/pages/feedback" class="forms" enctype="multipart/form-data">
                 <div class="card text-center">
                     <div class="card-header"><h3>Оставьте отзыв о курсе!</h3></div>
                     <div class="card-body">
                         <label for="name" style="padding-bottom: 1em">Имя пользователя: </label>
-                        <input class="form-control" type="text" name="name"  required>
+                        <input class="form-control" type="text" id="name" name="name"  required>
                         <label for="email" style="padding-bottom: 1em">Email: </label>
-                        <input class="form-control" type="email" name="email" placeholder="example@email.com" required>
+                        <input class="form-control" type="email" id="email" name="email" placeholder="example@email.com" required>
                         <div class="mx-6" style="padding-top: 1em; padding-bottom: 1em">
                             <label for="sex" style="padding-bottom: 1em"  >Ваш пол: </label>
-                            <input class="form-check-input" type="radio" name="sex" value="male" checked>
+                            <input class="form-check-input" type="radio" id="sex" name="sex" value="male" checked>
                             <label for="sex">Мужской</label>
-                            <input class="form-check-input" type="radio" name="sex" value="female">
+                            <input class="form-check-input" type="radio" id="sex" name="sex" value="female">
                             <label for="sex">Женский</label>
                         </div>
                         <label for="os">Ваша ОС: </label>
@@ -39,7 +39,7 @@
                         </div>
                         <label for="info" style="padding-bottom: 1em">Ваши впечатления о курсе:</label>
                         <textarea class="form-control mb-3" name="info" id="info" cols="50" rows="5" required></textarea>
-                        <button class="btn btn-primary" onclick="">Зарегистрироваться</button>
+                        <button class="btn btn-primary" onclick="">Отправить</button>
                     </div>
                 </div>
             </form>
