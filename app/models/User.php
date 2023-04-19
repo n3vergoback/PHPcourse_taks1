@@ -26,6 +26,8 @@ class User {
         $dbPassword = $row->password;
         if(password_verify($password, $dbPassword)){
             return $row;
+        } else {
+            return false;
         }
     }
 

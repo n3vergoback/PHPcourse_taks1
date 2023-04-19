@@ -60,11 +60,15 @@ class Users extends Controller {
             if(!$this->userModel->findUserByEmail($data['email'])){
                 $data['email_exists'] = 'Пользователь с такой почтой не найден!';
             }
-
-            if($this->userModel->userLogin($data['email'], $data['password'])){
-                die('logged in');
+            if(empty($data['email_exists'])) {
+                $user = $this->userModel->userLogin($data['email'], $data['password']);
+                if ($user) {
+                    $this->createUserSession($user);
+                } else {
+                    $data['pw_match'] = 'Неверный пароль!';
+                    $this->view('users/signin', $data);
+                }
             } else {
-                $data['pw_match'] = 'Неверный пароль!';
                 $this->view('users/signin', $data);
             }
         } else {
@@ -76,5 +80,20 @@ class Users extends Controller {
             ];
             $this->view('users/signin', $data);
         }
+    }
+
+    public function createUserSession(object $user): void{
+        $_SESSION['user_id'] = $user->id;
+        $_SESSION['user_email'] = $user->email;
+        $_SESSION['user_name'] = $user->name;
+        redirect('pages/index');
+    }
+
+    public function logout():void{
+        unset($_SESSION['user_id']);
+        unset($_SESSION['user_email']);
+        unset($_SESSION['user_name']);
+        session_destroy();
+        redirect('users/signin');
     }
 }

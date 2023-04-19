@@ -6,4 +6,4 @@ define('DB_NAME', 'task1');
 
 define('APPROOT', dirname(__FILE__, 2));
 define('URLROOT', 'http://localhost/phpcourse_task1');
-define('SITENAME', 'Task_1_for_PHPcourse');
+define('SITENAME', 'Task1');

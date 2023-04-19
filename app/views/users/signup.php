@@ -23,7 +23,7 @@
                             <input class="form-control <?php echo (!empty($data['pw_dont_match'])) ? 'is-invalid' : '' ?>"
                                    value="<?php echo $data['password1'] ?>" type="password" id="password1" name="password1" required>
                             <span class="invalid-feedback"><?php echo $data['pw_dont_match']; ?></span>
-                            <button class="btn btn-primary mt-3" onclick="">Зарегистрироваться</button>
+                            <button class="btn btn-secondary mt-3" onclick="">Зарегистрироваться</button>
                         </div>
                     </div>
                 </form>
