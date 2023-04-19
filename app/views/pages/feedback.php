@@ -39,6 +39,7 @@
                         </div>
                         <label for="info" style="padding-bottom: 1em">Ваши впечатления о курсе:</label>
                         <textarea class="form-control mb-3" name="info" id="info" cols="50" rows="5" required></textarea>
+                        <input class="btn btn-danger" type="reset">
                         <button class="btn btn-primary" onclick="">Отправить</button>
                     </div>
                 </div>

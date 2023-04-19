@@ -10,7 +10,7 @@ class Database {
     private string $error;
 
     public function __construct(){
-        $dsn = 'mysqli:host=' . $this->host . ';dbname=' . $this->dbName;
+        $dsn = 'mysql:host=' . $this->host . ';dbname=' . $this->dbName;
         $options = array(
             PDO::ATTR_PERSISTENT => true,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
@@ -49,7 +49,7 @@ class Database {
         return $this->statement->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function singleResultSet(): object{
+    public function singleResultSet(): object | bool{
         $this->execute();
         return $this->statement->fetch(PDO::FETCH_OBJ);
     }

@@ -12,9 +12,9 @@
                         <div class="card-header"><h2>Личный кабинет</h2></div>
                         <div class="card-body">
                             <label for="email" style="padding-bottom: 1em">Email: </label>
-                            <input class="form-control" type="email" id="email" name="email" required>
+                            <input class="form-control" value="<?php echo $data['email']; ?>" type="email" id="email" name="email" required>
                             <label for="password" style="padding-bottom: 1em">Пароль: </label>
-                            <input class="form-control" type="text" id="password" name="password" placeholder="example@email.com" required>
+                            <input class="form-control" value="<?php echo $data['password']; ?>" type="password" id="password" name="password" placeholder="example@email.com" required>
                             <button class="btn btn-primary mt-3" onclick="">Войти</button>
                         </div>
                     </div>
