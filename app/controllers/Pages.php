@@ -1,7 +1,8 @@
 <?php
 class Pages extends Controller {
+    protected object $feedbackModel;
     public function __construct(){
-
+        $this->feedbackModel =$this->model('Feedback');
     }
 
     public function index(): void{
@@ -14,13 +15,24 @@ class Pages extends Controller {
     public function feedback(): void{
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $data = [
-                'name'=> $_POST['name'],
-                'email'=> $_POST['email'],
+                'name'=> $_SESSION['user_name'],
+                'email'=> $_SESSION['user_email'],
                 'source'=> $_POST['source'],
-                'skills'=>$_POST['skills'],
+                'skills' => array_sum(
+                    array(
+                        isset($_POST['php']) ? 1 : 0,
+                        isset($_POST['mysql']) ? 2 : 0,
+                        isset($_POST['js']) ? 4 : 0,
+                        isset($_POST['git']) ? 8 : 0
+                    )
+                ),
                 'message'=>$_POST['message'],
                 'rate'=>$_POST['rate']
             ];
+
+            if($this->feedbackModel->addFeedback($data)){
+                redirect('/pages/index');
+            }
 
         } else {
             $data = [

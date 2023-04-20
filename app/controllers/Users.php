@@ -12,6 +12,8 @@ class Users extends Controller {
                 'email' => $_POST['email'],
                 'password' => $_POST['password'],
                 'password1' => $_POST['password1'],
+                'too_short_name' => '',
+                'too_short_pw' => '',
                 'email_exists' => '',
                 'pw_dont_match' => ''
             ];
@@ -20,11 +22,19 @@ class Users extends Controller {
                 $data['email_exists'] = 'Пользователь с такой почтой уже существует';
             }
 
+            if(strlen($data['name']) < 2){
+                $data['too_short_name'] = 'Имя должно быть не короче 2 символов!';
+            }
+
+            if(strlen($data['password']) < 8){
+                $data['too_short_pw'] = 'Пароль должен быть не короче 8 символов!';
+            }
+
             if($data['password'] != $data['password1']) {
                 $data['pw_dont_match'] = 'Пароли не совпадают!';
             }
 
-            if(empty($data['pw_dont_match']) && empty($data['email_exists'])) {
+            if(empty($data['pw_dont_match']) && empty($data['email_exists']) && empty($data['too_short_pw']) && empty($data['too_short_name'])){
                 $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 
                 if($this->userModel->userRegister($data)){
@@ -41,6 +51,8 @@ class Users extends Controller {
                 'email' => '',
                 'password' => '',
                 'password1' => '',
+                'too_short_name'=>'',
+                'too_short_pw'=>'',
                 'email_exists'=>'',
                 'pw_dont_match' => ''
             ];
