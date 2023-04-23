@@ -1,4 +1,4 @@
 <?php
-function redirect($page): void{
+function redirect(string $page): void{
     header('location: ' . URLROOT . '/' . $page);
 }

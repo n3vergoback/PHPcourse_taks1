@@ -5,7 +5,7 @@ class Controller {
         return new $model();
     }
 
-    public function view(string $view, $data = []): void{
+    public function view(string $view, array $data = []): void{
         if(file_exists('../app/views/' . $view . '.php')){
             require_once '../app/views/' . $view . '.php';
         } else {
